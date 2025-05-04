@@ -1,0 +1,36 @@
+{
+    "config_paths": [
+      "configs/model_1.yml",
+      "configs/model_2.yml",
+    ],
+    "sub_model_paths": [
+      "weights/model_1.pth",
+      "weights/model_2.pth",
+    ],
+    "all_scale_factors": [
+      [1.23, 4.56, 7.89],   // for submodel 1
+      [0.12, 0.34, 0.56],   // for submodel 2
+      /* … */
+    ],
+    "all_center_translations": [
+      [0.1, 0.2, 0.3],      // for submodel 1
+      [-1.0, 2.0, -3.0],    // for submodel 2
+      /* … */
+    ],
+      "all_bounds": [
+      [[-5,5],[-5,5],[-1,1]],  // for submodel 1
+      [[ 0,3],[ 0,4],[-2,2]],  // for submodel 2
+    ],
+    "alpha":               100,
+    "cbf_lambda":         -0.125,
+    "min_cbf_lambda":      -0.05,
+    "cbf_relaxation_penalty": 5,
+    "mask_dist":            0.4,
+    "step_size":            0.05,
+    "threshold":            0.25,
+    "still_limit":          50,
+    "max_iterations":     5000,
+    "use_adapters":       false,
+    "upper_bound":          5,
+    "scale":                1
+  }  

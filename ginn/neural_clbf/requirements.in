@@ -1,0 +1,31 @@
+# Standard
+numpy
+matplotlib
+seaborn
+pandas
+
+# # Code quality
+# mypy
+# pytest
+# flake8
+# brunette
+
+# # Learning libraries
+# torch==1.9.1
+pytorch-lightning
+torchmetrics
+
+# Optimization
+cvxpy
+cvxpylayers==0.1.5
+#gurobipy==9.1.2
+osqp
+ecos
+scs
+casadi
+
+# Geometry
+shapely
+
+# # Freeze versions to avoid bugs
+# setuptools==59.5.0

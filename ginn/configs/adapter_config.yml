@@ -1,0 +1,34 @@
+paths:
+  dataset_dir: "/scratch/rhm4nj/cral/cral-ginn/ginn/myvis/data_gen/S3D/Area_1/13_table"
+  siren_config_path: "/scratch/rhm4nj/cral/cral-ginn/ginn/all_runs/models/experiments/2025-02-24_11-27-03_Area_1/13_table/config.yml"
+  pretrained_siren_path: "/scratch/rhm4nj/cral/cral-ginn/ginn/all_runs/models/experiments/2025-02-24_11-27-03_Area_1/13_table/cond_siren/2025_02_24-11_43_53/2025_02_24-11_43_55-ccfbk8k9_300.pth"
+  pretrained_adapter_path: ""
+  model_save_path: "/scratch/rhm4nj/cral/cral-ginn/ginn/all_runs/models/adapter"
+  tensorboard_log_dir: "/scratch/rhm4nj/cral/cral-ginn/ginn/all_runs/adapter"
+  tensorboard_port: 6006
+
+training:
+  device: "cuda"
+  cbf_lambda: 1.0e-4
+  cbf_relaxation_penalty: 5
+  max_epochs: 1000
+  save_n_epochs: 10
+  loss_thresh: 0.01
+  control_norm: 1
+  min_control_norm: 0.5
+  min_outer_val: 1.0e-2
+  max_outer_val: 5
+  max_domain_val: -1.0e-2
+  lambda_recon: 0.25
+  lambda_descent: 1
+  lambda_small_control: 1.0e-1
+  lambda_lie_norm: 1.0e-2
+  loss_balancer_model: "fixed"  #gradnorm
+  activation_name: "gelu" # leaky_relu, sigmoid, tanh, elu, selu, gelu, softplus
+  adapter_mid_layers: [512, 256, 1] # [SIREN_N, 512, 256, 1]
+  grad_clipping_on: True
+  grad_clip: 0.5
+
+simulation:
+  controller_period: 0.05
+  simulation_dt: 0.01
