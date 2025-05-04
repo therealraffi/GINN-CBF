@@ -1,6 +1,8 @@
 # GINN-CBF
 Ensuring safe autonomous navigation in 3D environments reconstructed from vision remains a core challenge, especially when relying on learned scene geometry. We propose \textbf{GINN-CBF}, a method that integrates Geometry-Informed Neural Networks (GINNs) with Control Barrier Functions (CBFs) to enforce safety in real-time over signed distance fields (SDFs). Each GINN is a sine-activated implicit network trained on object-level point cloud clusters with a novel forward-invariance loss, allowing SDFs to directly encode control-theoretic safety. A differentiable masking strategy composes modular SDFs into a global field, enabling fast, query-time-safe control. To guarantee robustness under approximation error, we derive a Lipschitz-based bound and incorporate it into a conservatively approximated quadratic program (QP) that enforces forward invariance in real-time. We evaluate GINN-CBF on Replica indoor scenes under static and dynamic conditions. Compared to DepthCBF, NeRF-CBF, and SaferSplat, our method achieves perfect safety and significantly higher goal success across all test scenarios. GINN-CBF scales to complex, vision-derived scenes without online retraining, offering a flexible pipeline for learning-based safe control in real-world environments.
 
+This is a copy of my GINN-CBF folder - re-structured folders and deleted or moved redundant ones.
+
 ## Table of Contents
 - [ GINN-CBF training](#Training)
 - [Experiments](#features)
