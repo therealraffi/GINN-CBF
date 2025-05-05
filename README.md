@@ -33,3 +33,61 @@ To run mutiple scripts at once, `/scratch/rhm4nj/cral/cral-ginn-copy/slurm_scrip
 
 ## Experiments
 To run an `GINN-CBF`, run `experiment_base.ipynb`. Includes visualizations at beginning and end of files for point cloud and results. To run multiple concurrent experiments, run `experiments_export.ipynb` which runs experiments across SLURM nodes.
+
+## Full Setup
+
+### Installation
+
+```bash
+# on Rivanna
+ml cuda/12.4.1 gcc
+
+conda env create -f environment.yml
+conda activate ginn_env
+
+# neural-cbf dependencies
+cd ginn/neural_cbf
+pip install -r requirements.in
+
+# pointnext dependencies (if running segmentation from scratch / better segmentation)
+cd ginn/pointnext
+source update.sh
+source install.sh
+
+```
+
+download Replica Dataset from: https://huggingface.co/datasets/kxic/vMAP/tree/main
+unzip vmap.zip
+
+### Train GINN (can skip if using my pre-trained model and pre-processed weights)
+cd ginn/pointnext
+Run `/scratch/rhm4nj/cral/cral-ginn/ginn/pointnext/examples/segmentation/test_replica.ipynb` - this is a notebook
+* Change `data_root` to where you have the replica dataset saved
+* Change `out_path` to where you want to save the augmented points
+
+#### if access to SLURM:
+Run the `schedule_ginn.ipynb` notebook.
+#### else
+Run the `run.py` script for each GINN:
+
+```bash
+python run.py \
+  --gpu_list 0 \
+  --yml config_3dis.yml \
+  --no_save True \
+  --hp_dict "dataset_dir:/scratch/rhm4nj/cral/cral-ginn/ginn/myvis/data_gen/S3D/Area_1/0_ceiling;model_save_path:/scratch/rhm4nj/cral/cral-ginn/ginn/all_runs/models/experiments/2025-02-21_08-51-11_Area_1/_0_ceiling"
+```
+Replace `dataset_dir` with where the true points are truly located - set `model_save_path` to where you want to save the points.
+
+#### Pre-trained
+Alternatively, download the augmented points and weights from: https://drive.google.com/drive/folders/1imV61RNN8XDc9OjCdJ6tYh-ixRt2EoKn
+
+Put the weights folder in `/scratch/rhm4nj/cral/cral-ginn/ginn/all_runs/models/experiments/2025-04-30_11-11-10_room_0_objects_final`
+Put the points folder in `/scratch/rhm4nj/cral/cral-ginn/ginn/myvis/data_gen/replica/room_0_objects`
+
+### Run Experiments
+To run a single experiment, run `/scratch/rhm4nj/cral/display-cral-ginn/ginn/experiments_base.ipynb` 
+
+To run batched experiments, (requires SLURM) run `/scratch/rhm4nj/cral/display-cral-ginn/ginn/experiments_export.ipynb`. 
+
+Be sure to configure the paths for the augmented points and model weights for both.
