@@ -28,6 +28,8 @@ ginn/traj_outputs/*
 baselines/my_depth_cbf/qrotor_sim_examples/logs/*
 baselines/my_depth_cbf/qrotor_sim_examples/outs/*
 
+old/*
+
 *.ckpt
 *.sh
 *.zip
