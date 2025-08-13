@@ -8,7 +8,7 @@
 
 ## Description
 
-This project, GINN-CBF, addresses the challenge of safe autonomous navigation in 3D environments reconstructed from visual data. Our method integrates Geometry-Informed Neural Networks (GINNs) with Control Barrier Functions (CBFs) to enforce real-time safety. GINNs are sine-activated implicit networks trained on point cloud clusters to create signed distance fields (SDFs). A key aspect of our approach is a novel forward-invariance loss that allows these SDFs to directly encode control-theoretic safety. This enables fast, safe control without the need for online retraining, even as objects in the scene move dynamically.
+Ensuring safe autonomous navigation in 3D environments reconstructed from vision remains a core challenge, especially when relying on learned scene geometry. We propose GINN-CBF, a method that integrates Geometry-Informed Neural Networks (GINNs) with Control Barrier Functions (CBFs) to enforce safety in real-time over signed distance fields (SDFs). Each GINN is a sine-activated implicit network trained on object-level point cloud clusters with a novel forward-invariance loss, allowing SDFs to directly encode control-theoretic safety. This enables fast, safe control without the need for online retraining, even as objects in the scene move dynamically.
 
 ![System Diagram](imgs/system.png)
 The GINN-CBF pipeline works by first processing an input video to create a 3D point cloud of the scene. This point cloud is then segmented into object-level clusters, and a separate GINN is trained for each cluster. These individual SDFs are then combined into a single global field using a differentiable masking strategy. At inference time, any nominal controller can be wrapped in a robust CBF-QP filter.
@@ -22,6 +22,8 @@ This QP uses a Lipschitz-based bound to account for neural approximation error, 
 _Test environment from Replica Dataset_
 
 We evaluated our approach on visually reconstructed indoor scenes from the Replica Dataset under static and dynamic conditions. GINN-CBF achieved perfect safety and significantly higher goal success rates compared to baselines like DepthCBF, NeRF-CBF, and SaferSplat. Our method supports both reactive and global PRM-based planning and operates in real-time at 60Hz. This demonstrates that combining modular geometric learning with control-theoretic supervision is an effective way to achieve scalable and reactive safe planning in realistic environments
+
+[The full report can be found here.](https://drive.google.com/file/d/1z2jh_ZfeRbUsmyq1YATlZmULjeibjlVN/view?usp=drive_link)
 
 ## Training
 
