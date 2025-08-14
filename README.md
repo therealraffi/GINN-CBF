@@ -3,7 +3,7 @@
 ## Table of Contents
 
 - [ Description](#Description)
-- [ GINN-CBF training](#Training)
+- [ Training](#Training)
 - [Experiments](#features)
 
 ## Description
